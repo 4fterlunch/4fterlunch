@@ -18,18 +18,19 @@ mkdir ~/.zsh
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh -o ~/.zsh/git-completion.bash
 {% endhighlight %}
 
-Next up you'll need to add this to your z shell profile, this file should be names .zshenv. If you dont have one then you'll need to make one using `touch ~/.zshenv`.
+Next up you'll need to add this to your zshrc file, this file should  start up nano: `nano ~/.zshrc`.
 
-Edit the profile, if you don't care then use nano:
+Simply append this to your .zshrc:
 {% highlight bash %}
-nano ~/.zshenv
-{% endhighlight %}
-Simply append this to your .zshenv:
-{% highlight bash %}
+zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
 fpath=(~/.zsh $fpath)
+autoload -Uz compinit && compinit
 {% endhighlight%}
 
-Save and close, then lastly, restart your shell, or call `source ~/.zshenv`.
+Save and close, then lastly, restart your shell.
+
+You'll need to hit yes when prompted.
 
 Enjoy git autocomplete on Mac OS X!
+
 
