@@ -27,9 +27,27 @@ fpath=(~/.zsh $fpath)
 autoload -Uz compinit && compinit
 {% endhighlight%}
 
-Save and close, then lastly, restart your shell.
+Save and close, then restart your z shell.
 
-You'll need to hit yes when prompted.
+Ok so on restarting you will probably get a message like this:
+{% highlight bash %}
+zsh compinit: insecure directories, run compaudit for list.
+Ignore insecure directories and continue [y] or abort compinit [n]? 
+ccompinit: initialization aborted
+{%endhighlight%}
+
+Z shell is complaining about the ownership of these two directories:
+{% highlight bash %}
+/usr/local/share/zsh/site-functions
+/usr/local/share/zsh
+{%endhighlight%}
+
+So let's go ahead and secure these directories
+{% highlight bash %}
+sudo chmod -R 755 /usr/local/share/zsh/site-functions && chmod -R 755 /usr/local/share/zsh
+{%endhighlight%}
+
+restart shell again and you should not get this message again.
 
 Enjoy git autocomplete on Mac OS X!
 
